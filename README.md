@@ -1,13 +1,15 @@
 # GetCohorts
 
-Allocate users in your experiments to a cohort using our idempotent, random function.
+Allocate users in your experiments to a cohort using our idempotent function.
 
 ```python
 >>> from getcohorts import get_cohort
->>> get_cohort(b'user123', b'experiment')
+>>> get_cohort(b'user123', b'experiment', cohorts=['experimental', 'control'])
 'experimental'
 
 ```
+
+Using `get_cohort` will randomly assign a user to a cohort, but always assigns that user to the same cohort for the same `experiment`.
 
 ## Development
 
