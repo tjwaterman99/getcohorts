@@ -6,7 +6,6 @@ chardet==3.0.4
 coverage==5.2.1
 docutils==0.16
 flake8==3.8.3
--e git+git@github.com:tjwaterman99/getcohorts.git@082a3185033e09d9d5c87b4a4e82310890221864#egg=getcohorts
 idna==2.10
 imagesize==1.2.0
 importlib-metadata==1.7.0
