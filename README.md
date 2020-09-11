@@ -31,3 +31,11 @@ Run the tests with pytest
 ```
 pytest
 ```
+
+## Documentation
+
+Build the docs with sphinx-autobuild. The site is available at `0.0.0.0:8000`.
+
+```
+sphinx-autobuild docs docs/_build
+```
