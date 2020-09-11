@@ -8,3 +8,26 @@ Allocate users in your experiments to a cohort using our idempotent, random func
 'experimental'
 
 ```
+
+## Development
+
+Clone this repo.
+
+```bash
+git clone https://github.com/tjwaterman99/getcohorts.git
+```
+
+Install the package's dependencies, and install `getcohorts` in editable mode.
+
+```
+pip install -r requirements.txt
+pip install --editable .
+```
+
+## Testing
+
+Run the tests with pytest
+
+```
+pytest
+```
