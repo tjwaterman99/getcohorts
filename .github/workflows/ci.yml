@@ -23,7 +23,9 @@ jobs:
     - name: Test
       run: pytest
     - name: Docs
-      run: sphinx-build docs docs/_build
+      run: |
+        sphinx-build docs docs/_build
+      #  aws s3 cp ./docs/_build s3://docs.getcohorts.com --recursive
 
 #     - name: Build and publish
 #       env:
