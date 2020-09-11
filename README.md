@@ -26,7 +26,7 @@ pip install -r requirements.txt
 pip install --editable .
 ```
 
-## Testing
+### Testing
 
 Run the tests with pytest
 
@@ -34,7 +34,7 @@ Run the tests with pytest
 pytest
 ```
 
-## Documentation
+### Documentation
 
 Build the docs with sphinx-autobuild. The site is available at `0.0.0.0:8000`.
 
