@@ -11,7 +11,7 @@ def test_get_cohorts_returns_multiple_cohorts():
         identifier = str(i).encode('utf8')
         results.append(get_cohort(identifier, b'experiment'))
     assert len(set(results)) == 2
-    assert len([r for r in results if r==DEFAULT_COHORTS[0]]) > 400
+    assert len([r for r in results if r == DEFAULT_COHORTS[0]]) > 400
 
 
 def test_get_cohorts_returns_same_cohort_for_same_identifier():
@@ -25,4 +25,3 @@ def test_get_cohorts_returns_same_cohort_for_same_identifier():
 
 def test_default_cohorts_remain_static():
     assert DEFAULT_COHORTS == ['experimental', 'control']
-    
