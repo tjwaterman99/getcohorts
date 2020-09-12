@@ -65,4 +65,9 @@ jobs:
       - name: Deploy PyPI
         if: ${{ github.event_name == 'release' }}
         run: |
-          twine upload dist/* --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_ACCESS_TOKEN }} --skip-existing --repository ${{ secrets.PYPI_REPOSITORY }}
+          twine upload \
+            --skip-existing \
+            --repository ${{ secrets.PYPI_REPOSITORY }}  \
+            --username ${{ secrets.PYPI_USERNAME }} \
+            --password ${{ secrets.PYPI_ACCESS_TOKEN }} \
+            dist/*
