@@ -18,6 +18,6 @@ GetCohorts enables random, idempotent allocations of a user to an experiment's c
 .. code-block::
 
    >>> from getcohorts import get_cohort
-   >>> get_cohort('userid-6', 'homepage-test', cohorts=['experimental', 'control'])
+   >>> get_cohort('userid-1', 'homepage-test', cohorts=['experimental', 'control'])
    'experimental'
 

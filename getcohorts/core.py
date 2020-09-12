@@ -20,6 +20,10 @@ def _get_bytes(value: Any) -> bytes:
         return str(value).encode('utf8')
 
 
+def _format_cohorts(cohorts: List[str]):
+    return list(sorted(set(cohorts)))
+
+
 def get_seed(identifier: Any, experiment: Any) -> int:
     """
     Convert any combination of identifier and experiment to a random integer.
@@ -46,7 +50,8 @@ def get_cohort(identifier: Any, experiment: Any, cohorts:
     """
 
     seed = get_seed(identifier, experiment)
+    formatted_cohorts = _format_cohorts(cohorts)
     random = Random()
     random.seed(seed)
-    index = int(random.random() * len(cohorts))
-    return cohorts[index]
+    index = int(random.random() * len(formatted_cohorts))
+    return formatted_cohorts[index]

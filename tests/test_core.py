@@ -1,4 +1,6 @@
-from getcohorts.core import get_cohort, _get_bytes, get_seed, DEFAULT_COHORTS
+from getcohorts.core import (
+    get_cohort, _get_bytes, get_seed, DEFAULT_COHORTS, _format_cohorts
+)
 
 
 def test_get_bytes_converts_bytes():
@@ -19,6 +21,14 @@ def test_get_bytes_converts_floats():
 
 def test_get_seed_creates_a_seed():
     assert type(get_seed('a', 'b')) == int
+
+
+def test_format_cohorts_dedupes():
+    assert _format_cohorts(['a', 'a']) == ['a']
+
+
+def test_format_cohorts_sorts():
+    assert _format_cohorts(['b', 'a']) == ['a', 'b']
 
 
 def test_get_seed_returns_same_value_for_different_types():
@@ -57,3 +67,9 @@ def test_get_cohorts_returns_same_cohort_for_same_identifier():
 
 def test_default_cohorts_are_experimental_and_control():
     assert DEFAULT_COHORTS == ['experimental', 'control']
+
+
+def test_get_cohorts_ignores_order_of_cohorts():
+    first = get_cohort(1, 2, cohorts=['a', 'b'])
+    second = get_cohort(1, 2, cohorts=['b', 'a'])
+    assert first == second
