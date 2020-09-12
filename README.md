@@ -26,6 +26,15 @@ pip install -r requirements.txt
 pip install --editable .
 ```
 
+To run the webserver, install the Heroku cli.
+
+```
+sudo snap install --clasic heroku
+heroku local
+```
+
+The webserver will run on port `8000`.
+
 ### Testing
 
 Run the tests with pytest
