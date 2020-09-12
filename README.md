@@ -34,6 +34,25 @@ Run the tests with pytest
 pytest
 ```
 
+You can run the github CI workflows locally if you have [act](https://github.com/nektos/act) installed. You'll also need to create a file `.secrets` that contains deployment secrets for the staging environments.
+
+```
+# .secrets
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
+DOCS_S3_BUCKET=...
+
+PYPI_USERNAME=...
+PYPI_REPOSITORY_URL=...
+PYPI_ACCESS_TOKEN=...
+```
+
+Then run the Github workflows.
+
+```
+sudo act --secret-file .secrets
+```
+
 ### Documentation
 
 Build the docs with sphinx-autobuild. The site is available at `0.0.0.0:8000`.

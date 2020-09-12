@@ -1,36 +1,68 @@
-# This workflows will build and test the project.
+# Build and test the project, and deploy the docs site and PyPI on new 
+# releases. The deploy jobs could be sped up by caching the installed
+# packages, but they're fast enough for now.
 
 name: CI
 
-on: [push]
+on: [push, release]
 
 jobs:
-  deploy:
-
+  test:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v2.0.0
       with:
         python-version: '3.7'
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip wheel
         pip install -r requirements.txt
         pip install .
     - name: Test
       run: pytest
-    - name: Docs
-      run: |
-        sphinx-build docs docs/_build
-      #  aws s3 cp ./docs/_build s3://docs.getcohorts.com --recursive
 
-#     - name: Build and publish
-#       env:
-#         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-#         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-#       run: |
-#         python setup.py sdist bdist_wheel
-#         twine upload dist/*
+  deploy-docs:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2.0.0
+        with:
+          python-version: '3.7'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
+          pip install .    
+      - name: Build
+        run: |
+          sphinx-build docs docs/_build
+      - name: Deploy Docs
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          AWS_ACCESS_KEY_ID=${{secrets.AWS_ACCESS_KEY_ID}} AWS_SECRET_ACCESS_KEY=${{secrets.AWS_SECRET_ACCESS_KEY}} aws s3 cp --recursive ./docs/_build ${{ secrets.DOCS_S3_BUCKET }}
+  
+  deploy-pypi:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2.0.0
+        with:
+          python-version: '3.7'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
+          pip install .
+      - name: Build
+        run: |
+          python setup.py sdist bdist_wheel
+      - name: Deploy PyPI
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          twine upload --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_ACCESS_TOKEN }} --skip-existing --repository ${{ secrets.PYPI_REPOSITORY_URL }} dist/*
