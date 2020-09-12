@@ -1,4 +1,36 @@
-from getcohorts.core import get_cohort, DEFAULT_COHORTS
+from getcohorts.core import get_cohort, _get_bytes, get_seed, DEFAULT_COHORTS
+
+
+def test_get_bytes_converts_bytes():
+    assert type(_get_bytes(b'id')) == bytes
+
+
+def test_get_bytes_converts_strings():
+    assert type(_get_bytes('id')) == bytes
+
+
+def test_get_bytes_converts_integers():
+    assert type(_get_bytes(1)) == bytes
+
+
+def test_get_bytes_converts_floats():
+    assert type(_get_bytes(1.5)) == bytes
+
+
+def test_get_seed_creates_a_seed():
+    assert type(get_seed('a', 'b')) == int
+
+
+def test_get_seed_returns_same_value_for_different_types():
+    assert get_seed(b'1', b'2') == get_seed('1', '2')
+    assert get_seed(b'1', b'2') == get_seed(1, 2)
+    assert get_seed(b'1', b'2') == get_seed(1.0, 2.0)
+
+
+def test_get_seed_returns_different_seeds():
+    assert get_seed(1, 2) != get_seed(2, 1)
+    assert get_seed(1, 3) != get_seed(1, 2)
+    assert get_seed(1, 2) != get_seed(2, 2)
 
 
 def test_get_cohorts_returns_a_default_cohort():
@@ -23,5 +55,5 @@ def test_get_cohorts_returns_same_cohort_for_same_identifier():
     assert len(set(results)) == 1
 
 
-def test_default_cohorts_remain_static():
+def test_default_cohorts_are_experimental_and_control():
     assert DEFAULT_COHORTS == ['experimental', 'control']
