@@ -1,5 +1,5 @@
 from random import Random
-from typing import Any
+from typing import Any, List
 import hashlib
 
 
@@ -21,6 +21,13 @@ def _get_bytes(value: Any) -> bytes:
 
 
 def get_seed(identifier: Any, experiment: Any) -> int:
+    """
+    Convert any combination of identifier and experiment to a random integer.
+
+    Calling this function with the same identifier and experiment value
+    will return the same integer every time.
+    """
+
     identifier = _get_bytes(identifier)
     experiment = _get_bytes(experiment)
     hexdigest = hashlib.md5(identifier + experiment).hexdigest()
@@ -28,7 +35,16 @@ def get_seed(identifier: Any, experiment: Any) -> int:
     return seed
 
 
-def get_cohort(identifier: Any, experiment: Any, cohorts=DEFAULT_COHORTS):
+def get_cohort(identifier: Any, experiment: Any, cohorts:
+               List[str] = DEFAULT_COHORTS):
+    """
+    Randomly assign a value from the `cohort` list to the given experiment and
+    identifier.
+
+    Calling this function with the same identifier, experiment, and list of
+    cohorts will return the same selection from the cohort list every time.
+    """
+
     seed = get_seed(identifier, experiment)
     random = Random()
     random.seed(seed)
