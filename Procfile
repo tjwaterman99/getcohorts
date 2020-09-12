@@ -1,1 +1,1 @@
-web: uvicorn getcohorts.web:app
+web: uvicorn getcohorts.web:app --port $PORT
