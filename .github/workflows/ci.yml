@@ -61,8 +61,8 @@ jobs:
           pip install .
       - name: Build
         run: |
-          python setup.py sdist bdist_wheel
+          python setup.py sdist bdist_wheel && ls dist
       - name: Deploy PyPI
         if: ${{ github.event_name == 'release' }}
         run: |
-          twine upload --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_ACCESS_TOKEN }} --skip-existing --repository ${{ secrets.PYPI_REPOSITORY_URL }} dist/*
+          twine upload dist/* --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_ACCESS_TOKEN }} --skip-existing --repository ${{ secrets.PYPI_REPOSITORY }}
