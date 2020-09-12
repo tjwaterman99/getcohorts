@@ -4,3 +4,4 @@ __pycache__/
 getcohorts.egg-info
 .coverage
 .secrets
+docs/_build
