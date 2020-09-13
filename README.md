@@ -1,15 +1,14 @@
 # GetCohorts
 
-Allocate users in your experiments to a cohort using our idempotent function.
+Allocate users in your experiments to a cohort using our random, idempotent resource.
 
-```python
->>> from getcohorts import get_cohort
->>> get_cohort('userid-1', 'homepage-test', cohorts=['experimental', 'control'])
-'experimental'
-
+```bash
+curl http://api.getcohorts.com/v1/cohorts \
+    -X GET \
+    -d '{"identifier": "user1", "experiment": "homepage-test"}'
 ```
 
-Using `get_cohort` will randomly assign a user to a cohort, but always assigns that user to the same cohort for the same `experiment`.
+The endpoint will randomly assign the user `user1` to a cohort for the experiment `homepage-test`, and is gauranteed to always assign the same user to the same cohort for the same `experiment`.
 
 ## Development
 
@@ -25,6 +24,15 @@ Install the package's dependencies, and install `getcohorts` in editable mode.
 pip install -r requirements.txt
 pip install --editable .
 ```
+
+To run the webserver, install the Heroku cli.
+
+```
+sudo snap install --clasic heroku
+heroku local
+```
+
+The webserver will run on port `8000`.
 
 ### Testing
 
