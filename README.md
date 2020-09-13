@@ -1,5 +1,7 @@
 # GetCohorts
 
+[![PyPI version](https://badge.fury.io/py/getcohorts.svg)](https://badge.fury.io/py/getcohorts)
+
 Allocate users in your experiments to a cohort using our random, idempotent resource.
 
 ```bash
