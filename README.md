@@ -8,7 +8,7 @@ curl http://api.getcohorts.com/v1/cohorts \
     -d '{"identifier": "user1", "experiment": "homepage-test"}'
 ```
 
-The endpoint will randomly assign the user `user1` to a cohort for the experiment `homepage-test`, but is gauranteed to always assign the same user to the same cohort for the same `experiment`.
+The endpoint will randomly assign the user `user1` to a cohort for the experiment `homepage-test`, and is gauranteed to always assign the same user to the same cohort for the same `experiment`.
 
 ## Development
 

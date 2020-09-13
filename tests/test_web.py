@@ -10,7 +10,7 @@ def test_read_seed(test_client):
         'identifier': 1,
         'experiment': 'test'
     }
-    resp = test_client.get('/v1/seeds', json=json)
+    resp = test_client.get('/seeds', json=json)
     assert resp.status_code == 200
     assert type(resp.json()['seed']) == int
     assert resp.json()['params'] == json
@@ -21,7 +21,7 @@ def test_read_cohort(test_client):
         'identifier': 1,
         'experiment': 'test'
     }
-    resp = test_client.get('/v1/cohorts', json=json)
+    resp = test_client.get('/cohorts', json=json)
     assert resp.status_code == 200
     assert type(resp.json()['cohort']) == str
     assert resp.json()['params'] == json
