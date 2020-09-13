@@ -10,6 +10,9 @@ curl http://api.getcohorts.com/v1/cohorts \
 
 The endpoint will randomly assign the user `user1` to a cohort for the experiment `homepage-test`, and is gauranteed to always assign the same user to the same cohort for the same `experiment`.
 
+- [API Documentation](http://api.getcohorts.com)
+- [Installation instructions and reference](http://docs.getcohorts.com)
+
 ## Development
 
 Clone this repo.
