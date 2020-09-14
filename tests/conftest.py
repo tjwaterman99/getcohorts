@@ -5,7 +5,7 @@ from fastapi.testclient import TestClient
 # pytest can't import the `getcohorts` package without having `.` in PYTHONPATH
 sys.path.append('.')
 
-from getcohorts.web import v1  # noqa
+from getcohorts.web import v1, app  # noqa
 
 
 @fixture()
