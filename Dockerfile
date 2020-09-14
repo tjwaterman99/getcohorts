@@ -13,7 +13,4 @@ COPY ./README.md /app/README.md
 
 RUN pip install .
 
-# This isn't listening to interrupt signals and stopping the container.
-# https://hynek.me/articles/docker-signals/ might have some insight as
-# to how to fix
 CMD gunicorn --bind=0.0.0.0:$PORT --workers=2 --threads=4 --worker-class=uvicorn.workers.UvicornWorker --worker-tmp-dir=/dev/shm getcohorts.web:app
