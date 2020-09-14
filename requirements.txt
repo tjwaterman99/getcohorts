@@ -17,9 +17,7 @@ fastapi==0.61.1
 flake8==3.8.3
 Flask==1.1.2
 Flask-BasicAuth==0.2.0
-future==0.18.2
--e git+git@github.com:tjwaterman99/getcohorts.git@8514d043f0ff8579e19ffede0eee3f215971da34#egg=getcohorts
-gevent==20.6.2
+future==0.18.2gevent==20.6.2
 geventhttpclient==1.4.4
 greenlet==0.4.16
 gunicorn==20.0.4
