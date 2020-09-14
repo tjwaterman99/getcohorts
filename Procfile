@@ -1,1 +1,1 @@
-web: uvicorn getcohorts.web:app --host 0.0.0.0 --port $PORT
+web: gunicorn --bind 0.0.0.0:$PORT -w 2 -k uvicorn.workers.UvicornWorker getcohorts.web:app
