@@ -6,3 +6,4 @@ getcohorts.egg-info
 coverage.xml
 .secrets
 docs/_build
+site/

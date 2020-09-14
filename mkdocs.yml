@@ -1,0 +1,6 @@
+site_name: Get Cohorts
+theme:
+    name: material
+
+markdown_extensions:
+    - mkautodoc
