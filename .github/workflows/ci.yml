@@ -21,7 +21,10 @@ jobs:
         pip install -r requirements.txt
         pip install .
     - name: Test
-      run: pytest
+      run: |
+        coverage run -m pytest
+        cat coverage.xml
+        CODECOV_TOKEN="${{secrets.CODECOV_TOKEN}}" bash <(curl -s https://codecov.io/bash)
 
   deploy-docs:
     needs: [test]

@@ -2,6 +2,7 @@
 
 [![CI Actions Status](https://github.com/tjwaterman99/getcohorts/workflows/CI/badge.svg)](https://github.com/tjwaterman99/getcohorts/actions)
 [![PyPI version](https://badge.fury.io/py/getcohorts.svg)](https://badge.fury.io/py/getcohorts)
+[![codecov](https://codecov.io/gh/tjwaterman99/getcohorts/branch/master/graph/badge.svg)](https://codecov.io/gh/tjwaterman99/getcohorts)
 
 Allocate users in your experiments to a cohort using our random, idempotent resource.
 
