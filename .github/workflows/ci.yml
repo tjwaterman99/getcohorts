@@ -21,7 +21,9 @@ jobs:
         pip install -r requirements.txt
         pip install .
     - name: Test
-      run: pytest
+      run: |
+        pytest
+        bash <(curl -s https://codecov.io/bash)
 
   deploy-docs:
     needs: [test]
