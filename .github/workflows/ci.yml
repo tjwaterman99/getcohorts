@@ -23,7 +23,7 @@ jobs:
     - name: Test
       run: |
         pytest
-        bash <(curl -s https://codecov.io/bash)
+        CODECOV_TOKEN="${{secrets.CODECOV_TOKEN}}" bash <(curl -s https://codecov.io/bash)
 
   deploy-docs:
     needs: [test]
