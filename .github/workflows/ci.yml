@@ -23,6 +23,7 @@ jobs:
     - name: Test
       run: |
         pytest
+        cat coverage.xml
         CODECOV_TOKEN="${{secrets.CODECOV_TOKEN}}" bash <(curl -s https://codecov.io/bash)
 
   deploy-docs:
