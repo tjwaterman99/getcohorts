@@ -17,6 +17,8 @@ fastapi==0.61.1
 flake8==3.8.3
 Flask==1.1.2
 Flask-BasicAuth==0.2.0
+future==0.18.2
+-e git+git@github.com:tjwaterman99/getcohorts.git@8514d043f0ff8579e19ffede0eee3f215971da34#egg=getcohorts
 gevent==20.6.2
 geventhttpclient==1.4.4
 greenlet==0.4.16
@@ -31,13 +33,21 @@ itsdangerous==1.1.0
 jeepney==0.4.3
 Jinja2==2.11.2
 jmespath==0.10.0
+joblib==0.16.0
 keyring==21.4.0
 livereload==2.6.3
 locust==1.2.3
+lunr==0.5.8
+Markdown==3.2.2
 MarkupSafe==1.1.1
 mccabe==0.6.1
+mkautodoc==0.1.0
+mkdocs==1.1.2
+mkdocs-material==5.5.12
+mkdocs-material-extensions==1.0
 more-itertools==8.5.0
 msgpack==1.0.0
+nltk==3.5
 packaging==20.4
 pkginfo==1.5.0.1
 pluggy==0.13.1
@@ -49,6 +59,7 @@ pycparser==2.20
 pydantic==1.6.1
 pyflakes==2.2.0
 Pygments==2.6.1
+pymdown-extensions==8.0
 pyparsing==2.4.7
 pytest==6.0.1
 pytest-cov==2.10.1
@@ -58,6 +69,7 @@ pytz==2020.1
 PyYAML==5.3.1
 pyzmq==19.0.2
 readme-renderer==26.0
+regex==2020.7.14
 requests==2.24.0
 requests-toolbelt==0.9.1
 rfc3986==1.4.0
@@ -66,6 +78,15 @@ s3transfer==0.3.3
 SecretStorage==3.1.2
 six==1.15.0
 snowballstemmer==2.0.0
+Sphinx==3.2.1
+sphinx-autobuild==2020.9.1
+sphinx-rtd-theme==0.5.0
+sphinxcontrib-applehelp==1.0.2
+sphinxcontrib-devhelp==1.0.2
+sphinxcontrib-htmlhelp==1.0.3
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==1.0.3
+sphinxcontrib-serializinghtml==1.1.4
 starlette==0.13.6
 supervisor==4.2.1
 toml==0.10.1
