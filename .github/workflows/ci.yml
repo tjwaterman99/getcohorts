@@ -21,7 +21,7 @@ jobs:
         pip install -r requirements.txt
         pip install .
     - name: Run webserver
-      run: gunicorn --bind 0.0.0.0:$PORT -w 2 -k uvicorn.workers.UvicornWorker --daemon getcohorts.web:app
+      run: gunicorn --bind 0.0.0.0:8000 -w 2 -k uvicorn.workers.UvicornWorker --daemon getcohorts.web:app
     - name: Test
       run: |
         coverage run -m pytest
