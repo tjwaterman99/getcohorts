@@ -22,7 +22,7 @@ jobs:
         pip install .
     - name: Test
       run: |
-        pytest
+        coverage run -m pytest
         cat coverage.xml
         CODECOV_TOKEN="${{secrets.CODECOV_TOKEN}}" bash <(curl -s https://codecov.io/bash)
 
