@@ -15,6 +15,11 @@ def params():
     return {'identifier': 1, 'experiment': 2}
 
 
+def test_version_header(host):
+    resp = requests.get(host.format(route='/'))
+    assert resp.headers['X-API-Version'] is not None
+
+
 def test_index(host):
     resp = requests.get(host.format(route='/'))
     assert resp.status_code == 200

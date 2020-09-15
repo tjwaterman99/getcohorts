@@ -1,6 +1,6 @@
 from typing import Union, Optional, List
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
@@ -9,6 +9,7 @@ from getcohorts.core import (
     get_cohort as _get_cohort,
     DEFAULT_COHORTS
 )
+from getcohorts import __version__
 
 
 app = FastAPI(redoc_url=None, docs_url=None)
@@ -34,6 +35,13 @@ class CohortParams(BaseModel):
 class Cohort(BaseModel):
     params: CohortParams
     cohort: str
+
+
+@app.middleware('http')
+async def add_version(request: Request, call_next):
+    resp = await call_next(request)
+    resp.headers['X-API-Version'] = __version__
+    return resp
 
 
 @v1.get("/health")
