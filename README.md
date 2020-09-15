@@ -24,15 +24,23 @@ More details on using the service are available on the documentation site.
 
 ## Quickstart
 
-GetCohorts provides a web service at `http://api.getcohorts.com` that you can use for testing. But that service runs on Heroku's free tier, and can occasionally have slow response times. 
+GetCohorts provides a web service at `http://api.getcohorts.com` that you can use for testing. But that service runs on Heroku's free tier, and can occasionally have slow response times. So we recommend that you deploy GetCohorts yourself.
 
-We recommend that you deploy GetCohorts yourself.
-
-The easiest way to deploy GetCohorts is with docker.
+### Deploy with Docker
 
 ```sh
 docker run --publish 8000:8000 tjwaterman99/getcohorts
 ```
+
+### Deploy to Heroku
+
+You can also deploy to Heroku directly with the button below.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/tjwaterman99/getcohorts/tree/master)
+
+### Deploy from PyPI
+
+You can also download the Python package from PyPI and deploy yourself. For instructions, see the docs section on [deploying with pypi](http://docs.getcohorts.com/deploying/#pypi).
 
 ## Development
 
