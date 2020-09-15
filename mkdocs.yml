@@ -4,3 +4,11 @@ theme:
 
 markdown_extensions:
     - mkautodoc
+    - pymdownx.highlight
+    - pymdownx.superfences
+    
+nav:
+    - Introduction: index.md
+    - Installation: install.md
+    - API docs: 'http://api.getcohorts.com'    
+    - Reference: reference.md
