@@ -4,7 +4,10 @@
 
 name: CI
 
-on: [push, release]
+on: 
+  push:
+  release:
+    types: [published]
 
 jobs:
   test:
@@ -58,14 +61,14 @@ jobs:
     - name: Print tag
       run: echo ${{ steps.set_tag.outputs.getcohorts_version }}
     - name: Deploy image
-      # if: ${{ github.event_name == 'release' }}
+      if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         repository: tjwaterman99/getcohorts/getcohorts
-        tags: ${{ steps.set_tag.outputs.getcohorts_version }}
+        tag_with_ref: true
 
   deploy-docs:
     needs: [test]
