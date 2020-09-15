@@ -4,7 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/getcohorts.svg)](https://badge.fury.io/py/getcohorts)
 [![codecov](https://codecov.io/gh/tjwaterman99/getcohorts/branch/master/graph/badge.svg)](https://codecov.io/gh/tjwaterman99/getcohorts)
 
-GetCohorts provides an endpoint that will randomly determine a cohort for user in an A/B test, and is gauranteed to always assign the same user to the same cohort for the same experiment.
+GetCohorts provides an endpoint that will randomly determine a cohort for a user in an A/B test, and is gauranteed to always assign the same user to the same cohort for the same experiment.
 
 ```python
 >>> import requests
