@@ -1,10 +1,14 @@
-from typing import Union
+from typing import Union, Optional, List
 
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
-from getcohorts.core import get_seed as _get_seed, get_cohort as _get_cohort
+from getcohorts.core import (
+    get_seed as _get_seed,
+    get_cohort as _get_cohort,
+    DEFAULT_COHORTS
+)
 
 
 app = FastAPI(redoc_url=None, docs_url=None)
@@ -21,8 +25,14 @@ class Seed(BaseModel):
     seed: int
 
 
+class CohortParams(BaseModel):
+    identifier: Union[int, str, float]
+    experiment: Union[int, str, float]
+    cohorts: Optional[List[str]] = DEFAULT_COHORTS
+
+
 class Cohort(BaseModel):
-    params: SeedParams
+    params: CohortParams
     cohort: str
 
 
@@ -38,7 +48,7 @@ def get_seed(data: SeedParams):
 
 
 @v1.get('/cohorts', response_model=Cohort)
-def get_cohort(data: SeedParams):
+def get_cohort(data: CohortParams):
     cohort = _get_cohort(**data.dict())
     return Cohort(cohort=cohort, params=data)
 

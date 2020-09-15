@@ -17,6 +17,11 @@ experimental
 
 ```
 
+For more details on using the service, you can read the documentation and API reference.
+
+- [Documentation](http://docs.getcohorts.com)
+- [API Reference](http://api.getcohorts.com)
+
 ## Quickstart
 
 GetCohorts provides a web service at `http://api.getcohorts.com` that you can use for testing. But that service runs on Heroku's free tier, and can occasionally have slow response times. We recommend that you deploy GetCohorts yourself.
@@ -26,11 +31,6 @@ The easiest way to deploy GetCohorts is with docker.
 ```sh
 docker run --publish 8000:8000 tjwaterman99/getcohorts
 ```
-
-For more details on using the service, you can read the documentation and API reference.
-
-- [Documentation](http://docs.getcohorts.com)
-- [API Reference](http://api.getcohorts.com)
 
 ## Development
 

@@ -1,10 +1,12 @@
 # Introduction
 
-GetCohorts enables random, idempotent allocations of a user to an experiment's cohort.
+GetCohorts provides a web service for assigning users to a cohort of an A/B test.
 
 ```python
->>> from getcohorts import get_cohort
->>> get_cohort('userid-1', 'homepage-test', cohorts=['experimental', 'control'])
-'experimental'
-
-```
+>>> import requests
+>>> resp = requests.get('http://api.getcohorts.com/v1/cohorts', json={
+...    'identifier': 'user1',
+...    'experiment': 'homepage-test'
+... })
+>>> print(resp.json()['cohort'])
+experimental
