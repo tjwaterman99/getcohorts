@@ -54,15 +54,14 @@ jobs:
     - name: Test image
       run: pytest tests/test_api.py
     - name: Deploy image
+      if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
       with:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         repository: tjwaterman99/getcohorts/getcohorts
-        tags: |
-          tjwaterman99/getcohorts:latest
-          tjwaterman99/getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);")
+        tags: tjwaterman99/getcohorts:latest,tjwaterman99/getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);")
 
   deploy-docs:
     needs: [test]
