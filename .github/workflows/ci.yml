@@ -54,9 +54,8 @@ jobs:
     - name: Test image
       run: pytest tests/test_api.py
     - name: set_tag
-      run: |
-        echo ::set-output name=getcohorts_version::$(python -c "import getcohorts; print(getcohorts.__version__);")
-    - name: test tag
+      run: echo '::set-output name=getcohorts_version::$(python -c "import getcohorts; print(getcohorts.__version__);")'
+    - name: Print tag
       run: echo ${{ steps.set_tag.outputs.getcohorts_version }}
     - name: Deploy image
       # if: ${{ github.event_name == 'release' }}
