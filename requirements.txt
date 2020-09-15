@@ -101,3 +101,6 @@ Werkzeug==1.0.1
 zipp==3.1.0
 zope.event==4.4
 zope.interface==5.1.0
+
+# Install getcohorts
+--editable ./
