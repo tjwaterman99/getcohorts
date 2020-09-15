@@ -55,7 +55,7 @@ jobs:
       run: pytest tests/test_api.py
     - name: Set tag
       run: |
-        echo "::set-env name=GETCOHORTS_VERSION::$(python -c "import getcohorts; print(getcohorts.__version__);")
+        echo ::set-env name=GETCOHORTS_VERSION::$(python -c "import getcohorts; print(getcohorts.__version__);")
     - name: Deploy image
       # if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
