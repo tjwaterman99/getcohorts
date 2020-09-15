@@ -28,9 +28,6 @@ jobs:
         cat coverage.xml
         CODECOV_TOKEN="${{secrets.CODECOV_TOKEN}}" bash <(curl -s https://codecov.io/bash)
   
-  # TODO: 
-  # 1. Tests for the running web container we can run separately from the rest of the test suite
-  # 2. github container registry login and publishing on release
   deploy-docker:
     runs-on: ubuntu-latest
     steps:
@@ -57,7 +54,14 @@ jobs:
     - name: Test image
       run: pytest tests/test_api.py
     - name: Deploy image
-      run: docker push docker.pkg.github.com/tjwaterman99/getcohorts/getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);")
+      uses: docker/build-push-action@v1.1.1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: tjwaterman99/getcohorts/getcohorts
+        tag_with_ref: true
+    # run: docker push docker.pkg.github.com/tjwaterman99/getcohorts/getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);")
 
   deploy-docs:
     needs: [test]
