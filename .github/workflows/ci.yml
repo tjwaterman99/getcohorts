@@ -60,8 +60,9 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         repository: tjwaterman99/getcohorts/getcohorts
-        tag_with_ref: true
-    # run: docker push docker.pkg.github.com/tjwaterman99/getcohorts/getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);")
+        tags: |
+          tjwaterman99/getcohorts:latest
+          tjwaterman99/getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);")
 
   deploy-docs:
     needs: [test]
