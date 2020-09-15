@@ -17,14 +17,16 @@ experimental
 
 ```
 
-For more details on using the service, you can read the documentation and API reference.
+More details on using the service are available on the documentation site.
 
 - [Documentation](http://docs.getcohorts.com)
 - [API Reference](http://api.getcohorts.com)
 
 ## Quickstart
 
-GetCohorts provides a web service at `http://api.getcohorts.com` that you can use for testing. But that service runs on Heroku's free tier, and can occasionally have slow response times. We recommend that you deploy GetCohorts yourself.
+GetCohorts provides a web service at `http://api.getcohorts.com` that you can use for testing. But that service runs on Heroku's free tier, and can occasionally have slow response times. 
+
+We recommend that you deploy GetCohorts yourself.
 
 The easiest way to deploy GetCohorts is with docker.
 
@@ -40,53 +42,36 @@ Clone this repo.
 git clone https://github.com/tjwaterman99/getcohorts.git
 ```
 
-Install the package's dependencies, and install `getcohorts` in editable mode.
+Install the package's dependencies. This will also install `getcohorts` in editable mode.
 
 ```
 pip install -r requirements.txt
-pip install --editable .
 ```
 
-To run the webserver, install the Heroku cli.
+Run the uvicorn server locally in development mode.
 
 ```
-sudo snap install --clasic heroku
-heroku local
+uvicorn getcohorts.web:app --host 0.0.0.0 --port 8000 --reload
 ```
-
-The webserver will run on port `8000`.
 
 ### Testing
 
-Run the tests with pytest
+Run the tests with pytest. Note that the tests assume the webserver is running locally on port 8000, and they will fail if you have not started the webserver.
 
 ```
 pytest
 ```
 
-You can run the github CI workflows locally if you have [act](https://github.com/nektos/act) installed. You'll also need to create a file `.secrets` that contains deployment secrets for the staging environments.
+You can run the github CI workflows locally if you have [act](https://github.com/nektos/act) installed. 
 
 ```
-# .secrets
-AWS_ACCESS_KEY_ID=...
-AWS_SECRET_ACCESS_KEY=...
-DOCS_S3_BUCKET=...
-
-PYPI_USERNAME=...
-PYPI_REPOSITORY_URL=...
-PYPI_ACCESS_TOKEN=...
-```
-
-Then run the Github workflows.
-
-```
-sudo act --secret-file .secrets
+act
 ```
 
 ### Documentation
 
-Build the docs with sphinx-autobuild. The site is available at `0.0.0.0:8000`.
+Build the docs with mkdocs. The site is available at `0.0.0.0:8000`.
 
 ```
-sphinx-autobuild docs docs/_build
+mkdocs serve
 ```
