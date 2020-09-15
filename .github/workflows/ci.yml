@@ -49,7 +49,9 @@ jobs:
         docker build . \
           --file Dockerfile \
           --tag docker.pkg.github.com/tjwaterman99/getcohorts/getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);") \
-          --tag docker.pkg.github.com/tjwaterman99/getcohorts/getcohorts:latest
+          --tag docker.pkg.github.com/tjwaterman99/getcohorts/getcohorts:latest \
+          --tag getcohorts:$(python -c "import getcohorts; print(getcohorts.__version__);") \
+          --tag getcohorts:latest
     - name: Run image
       run: docker run --detach --publish 8000:8000 getcohorts
     - name: Test image
