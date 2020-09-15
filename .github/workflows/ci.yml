@@ -60,7 +60,16 @@ jobs:
       run: echo '::set-output name=getcohorts_version::$(python -c "import getcohorts; print(getcohorts.__version__);")'
     - name: Print tag
       run: echo ${{ steps.set_tag.outputs.getcohorts_version }}
-    - name: Deploy image
+
+    - name: Deploy image to Docker hub
+      if: ${{ github.event_name == 'release' }}
+      uses: docker/build-push-action@v1.1.1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: tjwaterman99/getcohorts
+        tag_with_ref: true
+    - name: Deploy image to Github docker repository
       if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
       with:
