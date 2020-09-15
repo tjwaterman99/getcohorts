@@ -65,8 +65,8 @@ jobs:
         registry: docker.pkg.github.com
         repository: tjwaterman99/getcohorts/getcohorts
         tags: |
-          tjwaterman99/getcohorts:latest
-          tjwaterman99/getcohorts:$GETCOHORTS_VERSION
+          latest
+          $GETCOHORTS_VERSION
 
   deploy-docs:
     needs: [test]
