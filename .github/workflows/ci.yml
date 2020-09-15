@@ -54,7 +54,7 @@ jobs:
     - name: Test image
       run: pytest tests/test_api.py
     - name: Deploy image
-      if: ${{ github.event_name == 'release' }}
+      # if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
       with:
         username: ${{ github.actor }}
