@@ -64,9 +64,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         repository: tjwaterman99/getcohorts/getcohorts
-        tags: |
-          latest
-          $GETCOHORTS_VERSION
+        tags: $GETCOHORTS_VERSION
 
   deploy-docs:
     needs: [test]
