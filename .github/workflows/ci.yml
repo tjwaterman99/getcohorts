@@ -53,9 +53,9 @@ jobs:
       run: docker run --detach --publish 8000:8000 getcohorts
     - name: Test image
       run: pytest tests/test_api.py
-    - name: Set tag
+    - name: set_tag
       run: |
-        echo ::set-env name=GETCOHORTS_VERSION::$(python -c "import getcohorts; print(getcohorts.__version__);")
+        echo ::set-output name=getcohorts_version::$(python -c "import getcohorts; print(getcohorts.__version__);")
     - name: Deploy image
       # if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
@@ -64,7 +64,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         repository: tjwaterman99/getcohorts/getcohorts
-        tags: $GETCOHORTS_VERSION
+        tags: ${{ steps.set_tag_outputs.getcohorts_version }}
 
   deploy-docs:
     needs: [test]
