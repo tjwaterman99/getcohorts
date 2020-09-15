@@ -25,3 +25,11 @@ You can supply a custom list of cohorts of any length.
 version1
 
 ```
+
+For reference details of the service, see the documentation site at [http://api.getcohorts.com](http://api.getcohorts.com).
+
+## Getting started
+
+The public endpoint at `http://api.getcohorts.com` is free to use, but is only suitable for testing and proof of concept applications. For production, we recommend deploying GetCohorts yourself.
+
+For instructions on how to deploy the service, see the section on [deploying](http://docs.getcohorts.com/deploying).
