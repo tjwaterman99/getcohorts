@@ -4,18 +4,33 @@
 [![PyPI version](https://badge.fury.io/py/getcohorts.svg)](https://badge.fury.io/py/getcohorts)
 [![codecov](https://codecov.io/gh/tjwaterman99/getcohorts/branch/master/graph/badge.svg)](https://codecov.io/gh/tjwaterman99/getcohorts)
 
-Allocate users in your experiments to a cohort using our random, idempotent resource.
+GetCohorts provides an endpoint that will randomly determine a cohort for user in an A/B test, and is gauranteed to always assign the same user to the same cohort for the same experiment.
 
-```bash
-curl http://api.getcohorts.com/v1/cohorts \
-    -X GET \
-    -d '{"identifier": "user1", "experiment": "homepage-test"}'
+```python
+>>> import requests
+>>> resp = requests.get('http://api.getcohorts.com/v1/cohorts', json={
+...    'identifier': 'user1',
+...    'experiment': 'homepage-test'
+... })
+>>> print(resp.json()['cohort'])
+experimental
+
 ```
 
-The endpoint will randomly assign the user `user1` to a cohort for the experiment `homepage-test`, and is gauranteed to always assign the same user to the same cohort for the same `experiment`.
+## Quickstart
 
-- [API Documentation](http://api.getcohorts.com)
-- [Installation instructions and reference](http://docs.getcohorts.com)
+GetCohorts provides a web service at `http://api.getcohorts.com` that you can use for testing. But that service runs on Heroku's free tier, and can occasionally have slow response times. We recommend that you deploy GetCohorts yourself.
+
+The easiest way to deploy GetCohorts is with docker.
+
+```sh
+docker run --publish 8000:8000 tjwaterman99/getcohorts
+```
+
+For more details on using the service, you can read the documentation and API reference.
+
+- [Documentation](http://docs.getcohorts.com)
+- [API Reference](http://api.getcohorts.com)
 
 ## Development
 
