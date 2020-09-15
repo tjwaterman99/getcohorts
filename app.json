@@ -1,0 +1,5 @@
+{
+    "name": "GetCohorts",
+    "description": "Utilities for allocating users to a cohort of an A/B test",
+    "repository": "https://github.com/tjwaterman99/getcohorts"
+}
