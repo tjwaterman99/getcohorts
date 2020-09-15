@@ -56,7 +56,7 @@ jobs:
       run: docker run --detach --publish 8000:8000 getcohorts
     - name: Test image
       run: pytest tests/test_api.py
-    - name: Deploy image to Docker hub
+    - name: Deploy versioned image to Docker hub
       if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
       with:
@@ -64,6 +64,14 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         repository: tjwaterman99/getcohorts
         tag_with_ref: true
+    - name: Deploy image with 'latest' tag to Docker hub
+      if: ${{ github.event_name == 'release' }}
+      uses: docker/build-push-action@v1.1.1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: tjwaterman99/getcohorts
+        tags: tjwaterman99/getcohorts:latest
     - name: Deploy image to Github docker repository
       if: ${{ github.event_name == 'release' }}
       uses: docker/build-push-action@v1.1.1
