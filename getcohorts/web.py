@@ -11,9 +11,14 @@ from getcohorts.core import (
 )
 from getcohorts import __version__
 
+docs_data = {
+    'version': __version__,
+    'title': "GetCohorts",
+    'description': "Utilities for allocating users to cohorts of an A/B test."
+}
 
 app = FastAPI(redoc_url=None, docs_url=None)
-v1 = FastAPI(redoc_url='/')
+v1 = FastAPI(redoc_url='/', **docs_data)
 
 
 class SeedParams(BaseModel):
