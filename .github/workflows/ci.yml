@@ -132,10 +132,10 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Deploy Heroku production app
-        if: github.event_name == 'release' && env.CI == 'true'
+        if: ${{ github.event_name == 'release' }}
         uses: akhileshns/heroku-deploy@v3.4.6
         with:
-          heroku_app_name: getcohorts-api-prod
+          heroku_app_name: ${{ secrets.HEROKU_PROD_APP_NAME }}
           heroku_email: "tjwaterman99"
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
 
