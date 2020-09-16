@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="getcohorts",  # Replace with your own username
-    version="0.1.11",
+    version="0.1.12",
     author="Tom Waterman",
     author_email="tjwaterman99@gmail.com",
     description="Utilities for randomizing A/B tests",
