@@ -108,7 +108,7 @@ jobs:
       - name: Print branches
         run: git branch
       - uses: akhileshns/heroku-deploy@v3.4.6
-        name: Deploy to Heroku
+        name: Deploy to Heroku test app
         with:
           heroku_app_name: $APP_NAME
           heroku_email: "tjwaterman99"
@@ -133,6 +133,11 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Deploy Heroku production app
         if: github.event_name == 'release' && CI=true
+        uses: akhileshns/heroku-deploy@v3.4.6
+        with:
+          heroku_app_name: getcohorts-api-prod
+          heroku_email: "tjwaterman99"
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
 
   deploy-docs:
     needs: [test]
