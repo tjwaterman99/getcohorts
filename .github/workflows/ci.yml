@@ -82,6 +82,58 @@ jobs:
         repository: tjwaterman99/getcohorts/getcohorts
         tag_with_ref: true
 
+  deploy-heroku:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set APP_NAME
+        run: |
+          export APP_NAME=getcohorts-app-$(date +%s)
+          export GETCOHORTS_API_URL=http://$APP_NAME.herokuapp.com
+          echo ::set-env name=APP_NAME::$APP_NAME
+          echo ::set-env name=GETCOHORTS_API_URL::$GETCOHORTS_API_URL
+      - name: Print app name and env
+        run: |
+          echo $APP_NAME
+          echo $GETCOHORTS_API_URL
+          env
+      - name: Install heroku cli
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+      - name: Create Heroku app
+        run: |
+          heroku apps:create $APP_NAME
+          heroku git:remote -a $APP_NAME
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Print branches
+        run: git branch
+      - uses: akhileshns/heroku-deploy@v3.4.6
+        name: Deploy to Heroku
+        with:
+          heroku_app_name: $APP_NAME
+          heroku_email: "tjwaterman99"
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+      - name: Set up Python
+        uses: actions/setup-python@v2.0.0
+        with:
+          python-version: '3.7'
+      - name: Install GetCohorts
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
+          pip install .
+      - name: Test Heroku App
+        run: |
+          env
+          pytest tests/test_api.py -xq
+      - name: Teardown Heroku app
+        if: ${{ always() }}
+        run: heroku apps:destroy $APP_NAME --confirm $APP_NAME
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Deploy Heroku production app
+        if: github.event_name == 'release' && CI=true
+
   deploy-docs:
     needs: [test]
     runs-on: ubuntu-latest
